@@ -1,14 +1,13 @@
-from django.shortcuts import render
-
-# Create your views here.
-from rest_framework.response import Response
-from rest_framework.decorators import api_view
-from .models import Student
-from .serializers import StudentSerializer
+from rest_framework.viewsets import ModelViewSet
+from .models import Student, Teacher
+from .serializers import StudentSerializer, TeacherSerializer
 
 
-@api_view(['GET'])
-def student_list(request):
-    students = Student.objects.all()
-    serializer = StudentSerializer(students, many=True)
-    return Response(serializer.data)
+class StudentViewSet(ModelViewSet):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+
+
+class TeacherViewSet(ModelViewSet):
+    queryset = Teacher.objects.all()
+    serializer_class = TeacherSerializer
