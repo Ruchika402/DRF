@@ -14,6 +14,10 @@ class Teacher(models.Model):
     email = models.EmailField(max_length = 100)
     phone = models.CharField(max_length = 100)   
 
+class Subject(models.Model):
+    name = models.CharField(max_length= 10)
+    subject_teacher_name = models.CharField(max_length = 10)
+
     def __str__(self):
         return self.name
     
