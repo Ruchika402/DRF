@@ -11,3 +11,11 @@ class StudentViewSet(ModelViewSet):
 class TeacherViewSet(ModelViewSet):
     queryset = Teacher.objects.all()
     serializer_class = TeacherSerializer
+
+from django.http import JsonResponse
+
+def home(request):
+    data = {
+        "message": "Hello World"
+    }
+    return JsonResponse(data)
