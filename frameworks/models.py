@@ -7,7 +7,7 @@ class Student(models.Model):
     name = models.CharField(max_length=100)
     age = models.IntegerField()
     city = models.CharField(max_length=100)
-    
+    course = models.CharField(max_length = 100)
 class Teacher(models.Model):
     name = models.CharField(max_length = 100)
     subject = models.CharField(max_length = 100)

@@ -1,12 +1,24 @@
 from rest_framework.viewsets import ModelViewSet
 from .models import Student, Teacher
 from .serializers import StudentSerializer, TeacherSerializer
-
+from rest_framework.permissions import IsAuthenticated
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter, OrderingFilter
 
 class StudentViewSet(ModelViewSet):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
+    permission_classes = [IsAuthenticated]
+    filter_backend = [
+        DjangoFilterBackend,
+        SearchFilter,
+        OrderingFilter
+    ]
+    filterset_fields = ['city', 'course']
 
+    search_fields = ['name']
+
+    ordering_fields = ['age']
 
 class TeacherViewSet(ModelViewSet):
     queryset = Teacher.objects.all()
