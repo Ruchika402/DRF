@@ -5,10 +5,14 @@ from .serializers import StudentSerializer, TeacherSerializer
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
 from .pagination import StudentPagination
+from .throttles import StudentThrottle
+
 class StudentViewSet(ModelViewSet):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
     pagination_class = StudentPagination
+    throttle_classes = [StudentThrottle]
+    
     #permission_classes = [AllowAny]
     filter_backends = [
         DjangoFilterBackend,
