@@ -4,10 +4,11 @@ from .serializers import StudentSerializer, TeacherSerializer
 #from rest_framework.permissions import AllowAny
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
-
+from .pagination import StudentPagination
 class StudentViewSet(ModelViewSet):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
+    pagination_class = StudentPagination
     #permission_classes = [AllowAny]
     filter_backends = [
         DjangoFilterBackend,
@@ -31,3 +32,6 @@ def home(request):
         "message": "Hello World"
     }
     return JsonResponse(data)
+
+
+
