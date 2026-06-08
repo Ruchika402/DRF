@@ -12,7 +12,8 @@ class Teacher(models.Model):
     name = models.CharField(max_length = 100)
     subject = models.CharField(max_length = 100)
     email = models.EmailField(max_length = 100)
-    phone = models.CharField(max_length = 100)   
+    phone = models.CharField(max_length = 100)
+    student = models.ForeignKey(Student,on_delete = models.CASCADE)   
 
 class Subject(models.Model):
     name = models.CharField(max_length= 10)
