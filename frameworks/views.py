@@ -49,3 +49,14 @@ class TestAuthView(APIView):
     
     def get(self, request):
         return Response({"message": f"Hello {request.user.username}! Token works!"})
+    
+
+from .serializers import BookSerializer
+
+class BulkCreateView(APIView):
+    def post(self, request):
+        serializer = BookSerializer(data=request.data, many=True)  
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
