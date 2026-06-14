@@ -1,9 +1,10 @@
+import uuid    
 from django.db import models
 
 # Create your models here.
 
 class Student(models.Model):
-   
+    id = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)
     name = models.CharField(max_length=100)
     age = models.IntegerField()
     city = models.CharField(max_length=100)
@@ -23,7 +24,7 @@ class Subject(models.Model):
         return self.name
     
 
-    
+import uuid    
 class Book(models.Model):
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=100)
